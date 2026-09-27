@@ -62,7 +62,8 @@ text are omitted. Body digests describe content changes, not intent.
 Output replacement is atomic per file, not across the pair. The CLI reports a write
 failure without printing success paths if either replacement fails. Live reports,
 local environments and built distributions are outside the tracked source. Only
-synthetic fixture data is packaged. No public license has been selected.
+synthetic fixture data is packaged. Original project code uses the MIT license;
+dependency licenses and notices remain separate.
 
 Future additions should extend normalized evidence and its tests before classification
 or presentation. A schema change needs explicit version/compatibility handling. A new

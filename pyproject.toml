@@ -7,8 +7,19 @@ name = "oss-pr-tracker"
 version = "0.2.0"
 description = "Read-only public GitHub PR evidence and attention reports"
 readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
 requires-python = ">=3.12"
 dependencies = ["httpx>=0.28,<0.29", "tzdata>=2026.1"]
+
+[tool.hatch.build.targets.sdist]
+only-include = [
+    "src/oss_pr_tracker", "tests", "scripts", "docs", ".github/workflows/ci.yml",
+    "README.md", "LICENSE", "pyproject.toml", "uv.lock", ".gitignore",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/oss_pr_tracker"]
 
 [project.scripts]
 oss-pr-tracker = "oss_pr_tracker.cli:main"

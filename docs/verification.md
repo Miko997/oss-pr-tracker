@@ -1,17 +1,10 @@
-# Validation record
+# Local validation
 
-Version 0.2.0 was tested locally on Python 3.13.13 from the source tree and Python
-3.12.13 using an installed wheel. The same 157 offline tests passed on both.
-Ruff lint and formatting, locked dependency synchronization, and the source/wheel
-build passed. Installed-console help/demo/render checks also passed outside the
-source tree on Python 3.12.13.
+Publication preparation for version 0.2.0 was validated locally on Linux with
+Python **3.13.13** and **3.12.13**. The same **157 offline tests passed on each**.
+No other Python version or operating system was tested in this pass.
 
-The 20 added test cases cover repository-owner classification, incomplete base
-identity, reconciled lifecycle totals, collection-window wording, default and
-non-default targets, missing branch metadata, normalization, and schema-1 snapshots
-without the new field. Learning the default branch does not fabricate a status event.
-
-Reproduce the project checks with:
+Commands run from the project root:
 
 ```bash
 uv sync --locked
@@ -22,11 +15,22 @@ uv build
 git diff --check
 ```
 
-`scripts/verify_installed.py` checks the installed console script outside the source
-tree with credentials removed and network/process calls blocked. See README for
-scope and interpretation limits. Local validation only; remote CI has not run.
+The source distribution and wheel were rebuilt and their actual contents inspected.
+They include the MIT license and synthetic demo, and exclude personal reports,
+credentials, logs, caches and recovery material. Package metadata declares `MIT`.
+A clean Python 3.12.13 environment installed the built wheel and ran the complete
+offline suite. Installed help, demo and render also passed outside the source tree
+with credential variables removed and network/process calls blocked by
+`scripts/verify_installed.py`.
 
-An authenticated read-only scan and independent GitHub spot checks were also
-completed. Personal counts, PR investigations, exact environment-specific commands,
-and the historical verification note remain under ignored `reports/`, outside
-version control. No Python versions beyond the two listed above were tested.
+README demo/render commands were executed and their JSON outputs compared. Scan
+command syntax and comparison behavior were exercised with synthetic HTTP responses;
+no live scan was run for publication preparation. The README's eight-PR example
+matches the bundled synthetic data.
+
+The CI workflow configures tests, Ruff lint/format checks and a build on Python 3.12
+and 3.13, with read-only permissions and pinned action revisions. Local workflow
+validation is not a successful GitHub CI run; remote CI has not run.
+
+Environment-specific command transcripts and private audit/recovery details stay
+outside the tracked source. Previously saved live reports remain local and ignored.

@@ -3,5 +3,9 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 dist/
+build/
 reports/
 *.egg-info/
+.env
+.env.*
+*.log
