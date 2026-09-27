@@ -85,6 +85,7 @@ class PullRequest:
     author: str | None = None
     repository: str | None = None
     repository_id: int | None = None
+    repository_default_branch: str | None = None
     lifecycle: str = "unknown"
     state: str | None = None
     draft: bool | None = None
@@ -194,6 +195,7 @@ def validate_shapes(data):
             "title",
             "author",
             "repository",
+            "repository_default_branch",
             "url",
             "head_sha",
             "base_sha",

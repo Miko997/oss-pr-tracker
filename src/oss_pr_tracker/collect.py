@@ -54,6 +54,7 @@ def normalized_detail(d, username, observed_at):
         author=user["login"],
         repository=repo["full_name"],
         repository_id=repo["id"],
+        repository_default_branch=clean(repo.get("default_branch")) or None,
         lifecycle=lifecycle(d),
         state=clean(d.get("state")) or None,
         draft=d.get("draft") if type(d.get("draft")) is bool else None,

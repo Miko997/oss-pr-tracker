@@ -177,7 +177,7 @@ def test_help_and_version(capsys):
         with pytest.raises(SystemExit) as e:
             main([arg])
         assert e.value.code == 0
-    assert "0.1.0" in capsys.readouterr().out
+    assert "0.2.0" in capsys.readouterr().out
 
 
 def test_scan_exit_codes_and_secret_absent_everywhere(tmp_path, monkeypatch, capsys):

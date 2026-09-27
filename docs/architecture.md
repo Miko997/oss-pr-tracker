@@ -82,3 +82,17 @@ would require a separate design decision; none is hidden in this version.
 - [Combined statuses](https://docs.github.com/en/rest/commits/statuses#get-the-combined-status-for-a-specific-reference)
 - [Pagination](https://docs.github.com/en/rest/using-the-rest-api/using-pagination-in-the-rest-api)
 - [Retry/rate-limit practice](https://docs.github.com/en/rest/using-the-rest-api/best-practices-for-using-the-rest-api)
+
+## Ownership and branch reporting (0.2.0)
+
+Ownership classification is a small pure reporting function over the authoritative
+base repository ID/name and the scanned username. It compares account logins only;
+it does not interpret organization control. Incomplete base identity produces the
+unknown group. Each lifecycle count partitions the same observed inventory, so
+group totals reconcile with the overall counts.
+
+`repository_default_branch` is nullable, captured from the already-fetched public
+base repository object. It costs no additional API call and is metadata at observation
+time, not proof of a historical default branch or current release inclusion. The
+reader accepts missing values in schema 1. Comparison ignores the new metadata,
+preventing its appearance in a fresh scan from becoming a fabricated status event.

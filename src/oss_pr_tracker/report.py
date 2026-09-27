@@ -2,6 +2,7 @@
 
 import json
 import os
+import re
 import tempfile
 from collections import Counter
 from pathlib import Path
@@ -9,6 +10,13 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from .classify import PRIORITY
 from .models import clean, safe_url, timestamp
+
+OWNERSHIP_LABELS = {
+    "own_account": "own-account repositories",
+    "other_owner": "other-owner repositories",
+    "unknown": "unknown ownership",
+}
+LIFECYCLE_ORDER = ("open", "draft", "merged", "closed_unmerged", "unknown")
 
 LIMITATIONS = (
     "Observed head checks are collected in the base repository. Required-check policy, test-merge "
@@ -53,12 +61,42 @@ def human(value):
         return d.strftime("%Y-%m-%d %H:%M:%S UTC (Europe/Helsinki timezone data unavailable)")
 
 
+def ownership_group(p, username):
+    """Use the authoritative base repository name; never guess organization control."""
+    if type(p.repository_id) is not int or p.repository_id < 1 or not p.repository:
+        return "unknown"
+    match = re.fullmatch(r"([A-Za-z0-9-]+)/[A-Za-z0-9_.-]+", p.repository)
+    if not match:
+        return "unknown"
+    return "own_account" if match[1].casefold() == username.casefold() else "other_owner"
+
+
+def target_branch_relation(p):
+    if not p.repository_default_branch:
+        return "unknown (default branch not recorded)"
+    if not p.base_ref:
+        return "unknown (target branch not recorded)"
+    relation = (
+        "default branch" if p.base_ref == p.repository_default_branch else "non-default branch"
+    )
+    return f"{relation} (observed default: {p.repository_default_branch})"
+
+
 def counts(snap):
+    by_owner = {
+        group: {"total": 0, "lifecycle": dict.fromkeys(LIFECYCLE_ORDER, 0)}
+        for group in OWNERSHIP_LABELS
+    }
+    for p in snap.pull_requests:
+        group = by_owner[ownership_group(p, snap.username)]
+        group["total"] += 1
+        group["lifecycle"][p.lifecycle] += 1
     return {
         "lifecycle": dict(sorted(Counter(p.lifecycle for p in snap.pull_requests).items())),
         "attention": dict(
             sorted(Counter(p.attention["category"] for p in snap.pull_requests).items())
         ),
+        "by_repository_owner": by_owner,
     }
 
 
@@ -103,6 +141,7 @@ def markdown(s):
         ),
         "Reviews of other people’s PRs, issue-only activity and off-GitHub contributions "
         "are outside this inventory.",
+        "These are collection-window counts, not lifetime contribution totals.",
         "",
     ]
     summary = counts(s)
@@ -114,8 +153,27 @@ def markdown(s):
         "| Dimension | Counts (same observed denominator) |",
         "| --- | --- |",
     ]
-    for kind, values in summary.items():
+    for kind in ("lifecycle", "attention"):
+        values = summary[kind]
         rows.append(f"| {kind} | " + ", ".join(f"{k}: {v}/{n}" for k, v in values.items()) + " |")
+    rows += [
+        "",
+        "| Repository ownership | Total | Open | Draft | Merged | "
+        "Closed unmerged | Unknown lifecycle |",
+        "| --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for group, values in summary["by_repository_owner"].items():
+        cells = [OWNERSHIP_LABELS[group], str(values["total"])]
+        cells.extend(str(values["lifecycle"][state]) for state in LIFECYCLE_ORDER)
+        rows.append("| " + " | ".join(cells) + " |")
+    rows += [
+        "",
+        "Own-account means the base repository owner matches the scanned username. "
+        "Other-owner repositories may include organizations controlled by that person; "
+        "no organization control or independent upstream contribution is inferred. "
+        "Overall merged counts include both groups and are not "
+        "external open-source contribution counts.",
+    ]
     rows += ["", LIMITATIONS, "", "## Your next actions", ""]
     ordered = sorted(
         s.pull_requests,
@@ -172,14 +230,20 @@ def markdown(s):
             "",
             "## " + heading,
             "",
-            "| PR | Title | Actual target branch | Date |",
-            "| --- | --- | --- | --- |",
+            "Target/default comparisons use the repository default observed during this scan. "
+            "The default may have changed since a historical merge. "
+            "A non-default target may be a feature/integration or another branch; "
+            "release status and later inclusion in the default branch are not established.",
+            "",
+            "| PR | Title | Actual target branch | Target vs observed default | Date |",
+            "| --- | --- | --- | --- | --- |",
         ]
         for p in ordered:
             if p.lifecycle == state:
                 rows.append(
                     f"| {link(f'{p.repository} #{p.number}', p.url)} | {escape(p.title)} | "
                     f"{escape(p.base_ref)} | "
+                    f"{escape(target_branch_relation(p))} | "
                     f"{human(p.merged_at if state == 'merged' else p.closed_at)} |"
                 )
     if s.comparison:
@@ -236,6 +300,8 @@ def markdown(s):
             "",
             f"{link(p.title, p.url)} · observed {human(p.observed_at)}",
             f"Head: {escape(p.head_sha)} · base: {escape(p.base_ref)} @ {escape(p.base_sha)}",
+            f"Repository group: {OWNERSHIP_LABELS[ownership_group(p, s.username)]}; "
+            f"target: {escape(target_branch_relation(p))}.",
             f"Mergeable field: {escape(p.mergeable)}; "
             f"mergeable state: {escape(p.mergeable_state)}. "
             "True means no detected automatic-merge conflict; merge readiness is not established.",

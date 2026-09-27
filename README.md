@@ -173,3 +173,31 @@ plugins. Do not use live API results as regression fixtures. Synthetic demo JSON
 included in the wheel; generated reports and virtual environments are ignored.
 
 See [architecture](docs/architecture.md) and the actual [verification record](docs/verification.md).
+
+## Repository ownership and merge targets
+
+The overall lifecycle counts now have a second breakdown by **own-account
+repositories**, **other-owner repositories**, and **unknown ownership**. The grouping
+uses the owner component of the authoritative base repository name, compared
+case-insensitively with the scanned username. Missing repository identity stays
+unknown. Fork/head ownership does not determine this group.
+
+An organization with a different login remains other-owner, even if the scanned
+person controls it. No organization ownership or independent upstream work is
+inferred. These groups describe repository ownership, not contribution quality,
+licensing, or a verified external contribution count. Counts refer to the displayed
+collection window: all open PRs plus closed PRs in the configured period. They are
+not lifetime contribution totals.
+
+Merged rows retain the actual target branch and compare it with the repository's
+default branch observed during collection. A non-default target can be a feature,
+integration, or other branch. This comparison does not establish subsequent
+inclusion in the default branch or a release, and a repository's default branch
+may have changed since the merge.
+
+Version 0.2.0 adds the optional `repository_default_branch` snapshot field while
+retaining schema version 1. Older snapshots still load. Their default branch is
+unknown until a new scan records it; missing metadata does not generate a status
+change. Ownership breakdowns are derived from the existing base repository identity
+and appear in Markdown and the CLI's JSON count summary. The saved JSON snapshot
+retains the factual inputs without duplicating derived totals.
