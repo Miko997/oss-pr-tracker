@@ -1,0 +1,731 @@
+{
+  "scan_id": "synthetic-example-v1",
+  "mode": "demo",
+  "username": "sample-contributor",
+  "started_at": "2026-09-27T12:00:00Z",
+  "finished_at": "2026-09-27T12:00:00Z",
+  "scope": {
+    "public_only": true,
+    "open_included": true,
+    "all_history": false,
+    "closed_since": "2026-06-29T12:00:00Z"
+  },
+  "schema_version": 1,
+  "application_version": "0.1.0",
+  "discovery": [
+    {
+      "query": "synthetic fixture inventory (not sent to GitHub)",
+      "reported_total": 8,
+      "fetched_count": 8,
+      "status": "complete",
+      "warnings": [],
+      "pages": 1
+    }
+  ],
+  "pull_requests": [
+    {
+      "identity": "42:1",
+      "number": 1,
+      "url": "https://github.com/synthetic-lab/example-project/pull/1",
+      "id": 1001,
+      "title": "Review asks for clarification",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "open",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [
+            {
+              "id": 201,
+              "source": "reviews",
+              "author": "sample-reviewer",
+              "author_type": "User",
+              "association": "COLLABORATOR",
+              "created_at": "2026-09-26T11:00:00Z",
+              "updated_at": null,
+              "url": "https://github.com/synthetic-lab/example-project/pull/1#pullrequestreview-1",
+              "body_digest": "85ac3d13a2f18943240d346c2b4ba68da7085bdccd10b6e823661041aae240ab",
+              "excerpt": "Could you explain this assumption in the test?",
+              "state": "CHANGES_REQUESTED",
+              "commit_id": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            }
+          ],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "author_action",
+        "reasons": [
+          {
+            "code": "current_changes_requested",
+            "message": "Address or respond to this review.",
+            "level": "author_action",
+            "url": "https://github.com/synthetic-lab/example-project/pull/1#pullrequestreview-1",
+            "at": "2026-09-26T11:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          {
+            "code": "possible_follow_up",
+            "message": "Latest feedback to inspect; response status not established. Possible follow-up only: pushes or offline conversations may have addressed it.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/1#pullrequestreview-1",
+            "at": "2026-09-26T11:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:2",
+      "number": 2,
+      "url": "https://github.com/synthetic-lab/example-project/pull/2",
+      "id": 1002,
+      "title": "Inspect a failing check",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "open",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "complete",
+          "items": [
+            {
+              "id": 300,
+              "name": "unit tests",
+              "app_id": 1,
+              "app": "synthetic-ci",
+              "suite_id": 10,
+              "status": "completed",
+              "conclusion": "failure",
+              "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+              "url": "https://github.com/synthetic-lab/example-project/pull/2",
+              "created_at": "2026-09-26T12:00:00Z",
+              "updated_at": "2026-09-26T12:01:00Z"
+            }
+          ],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "inspect",
+        "reasons": [
+          {
+            "code": "check_failure",
+            "message": "Inspect observed check unit tests: failure.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/2",
+            "at": "2026-09-26T12:01:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:3",
+      "number": 3,
+      "url": "https://github.com/synthetic-lab/example-project/pull/3",
+      "id": 1003,
+      "title": "Waiting for review",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "open",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "waiting",
+        "reasons": [
+          {
+            "code": "inferred_review_wait",
+            "message": "No author action detected in collected evidence; likely awaiting review (inference).",
+            "level": "waiting",
+            "url": "https://github.com/synthetic-lab/example-project/pull/3",
+            "at": "2026-09-27T12:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:4",
+      "number": 4,
+      "url": "https://github.com/synthetic-lab/example-project/pull/4",
+      "id": 1004,
+      "title": "Merged into a feature branch",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "merged",
+      "state": "closed",
+      "draft": false,
+      "merged": true,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": "2026-09-20T10:00:00Z",
+      "merged_at": "2026-09-20T10:00:00Z",
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "feature/navigation",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "done",
+        "reasons": [
+          {
+            "code": "terminal",
+            "message": "merged; target branch: feature/navigation.",
+            "level": "done",
+            "url": "https://github.com/synthetic-lab/example-project/pull/4",
+            "at": "2026-09-27T12:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:5",
+      "number": 5,
+      "url": "https://github.com/synthetic-lab/example-project/pull/5",
+      "id": 1005,
+      "title": "Closed experiment",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "closed_unmerged",
+      "state": "closed",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": "2026-09-20T10:00:00Z",
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "not_requested_terminal",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "done",
+        "reasons": [
+          {
+            "code": "terminal",
+            "message": "closed_unmerged; target branch: main.",
+            "level": "done",
+            "url": "https://github.com/synthetic-lab/example-project/pull/5",
+            "at": "2026-09-27T12:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:6",
+      "number": 6,
+      "url": "https://github.com/synthetic-lab/example-project/pull/6",
+      "id": 1006,
+      "title": "Draft design",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "draft",
+      "state": "open",
+      "draft": true,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "inspect",
+        "reasons": [
+          {
+            "code": "draft_decision",
+            "message": "Decide whether this draft is ready for review.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/6",
+            "at": "2026-09-27T12:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:7",
+      "number": 7,
+      "url": "https://github.com/synthetic-lab/example-project/pull/7",
+      "id": 1007,
+      "title": "Incomplete CI evidence",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "open",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "partial",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "unavailable",
+          "items": [],
+          "warnings": [
+            "Synthetic permission error."
+          ],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "inspect",
+        "reasons": [
+          {
+            "code": "incomplete_data",
+            "message": "Collection is incomplete or unstable; inspect the limitations.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/7",
+            "at": "2026-09-27T12:00:00Z",
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          }
+        ]
+      }
+    },
+    {
+      "identity": "42:8",
+      "number": 8,
+      "url": "https://github.com/synthetic-lab/example-project/pull/8",
+      "id": 1008,
+      "title": "Review feedback on an earlier revision",
+      "author": "sample-contributor",
+      "repository": "synthetic-lab/example-project",
+      "repository_id": 42,
+      "lifecycle": "open",
+      "state": "open",
+      "draft": false,
+      "merged": false,
+      "created_at": "2025-01-01T12:00:00Z",
+      "updated_at": "2026-09-26T12:00:00Z",
+      "closed_at": null,
+      "merged_at": null,
+      "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "base_ref": "main",
+      "base_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "mergeable": true,
+      "mergeable_state": "clean",
+      "requested_reviewers": [],
+      "requested_teams": [],
+      "observed_at": "2026-09-27T12:00:00Z",
+      "coherent": true,
+      "collection_quality": "complete",
+      "warnings": [],
+      "collections": {
+        "reviews": {
+          "status": "complete",
+          "items": [
+            {
+              "id": 208,
+              "source": "reviews",
+              "author": "sample-reviewer",
+              "author_type": "User",
+              "association": "COLLABORATOR",
+              "created_at": "2026-09-26T11:00:00Z",
+              "updated_at": null,
+              "url": "https://github.com/synthetic-lab/example-project/pull/8#pullrequestreview-8",
+              "body_digest": "85ac3d13a2f18943240d346c2b4ba68da7085bdccd10b6e823661041aae240ab",
+              "excerpt": "Could you explain this assumption in the test?",
+              "state": "CHANGES_REQUESTED",
+              "commit_id": "cccccccccccccccccccccccccccccccccccccccc"
+            }
+          ],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "conversation": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "inline": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "check_runs": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        },
+        "commit_statuses": {
+          "status": "complete",
+          "items": [],
+          "warnings": [],
+          "total": null,
+          "pages": 0
+        }
+      },
+      "attention": {
+        "category": "inspect",
+        "reasons": [
+          {
+            "code": "old_changes_requested",
+            "message": "Review predates or cannot be tied to the current head; check whether addressed.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/8#pullrequestreview-8",
+            "at": "2026-09-26T11:00:00Z",
+            "sha": "cccccccccccccccccccccccccccccccccccccccc"
+          },
+          {
+            "code": "possible_follow_up",
+            "message": "Latest feedback to inspect; response status not established. Possible follow-up only: pushes or offline conversations may have addressed it.",
+            "level": "inspect",
+            "url": "https://github.com/synthetic-lab/example-project/pull/8#pullrequestreview-8",
+            "at": "2026-09-26T11:00:00Z",
+            "sha": "cccccccccccccccccccccccccccccccccccccccc"
+          }
+        ]
+      }
+    }
+  ],
+  "complete": false,
+  "warnings": [
+    "Synthetic examples include an unavailable check endpoint to demonstrate partial evidence."
+  ],
+  "errors": [],
+  "request_counts": {
+    "requests": 0,
+    "errors": 0
+  },
+  "comparison": null
+}
